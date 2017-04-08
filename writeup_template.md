@@ -92,21 +92,26 @@ The final model architecture (model.py code lines 77-90) consisted of a convolut
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x1 grayscaled image   							| 
-| Convolution #1     	| 1x1 stride, outputs 28x28x6 	|
+| Input         		| 160x320x3 image   							| 
+| Crop Data     	| Took 80 from the top and 25 from the bottom	|
+| Convolution #1     	| 2x2 Stride, 5x5 Filter, 12 Deep 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
-| Convolution #2	    | 1x1 stride, outputs 10x10x16      									|
+| Max pooling	      	| 2x2 Stride 				|
+| Convolution #2     	| 2x2 Stride, 5x5 Filter, 36 Deep 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
-| Flatten	      	| outputs 400x1 				|
-| Fully connected #1		| outputs 200x1        									|
+| Max pooling	      	| 2x2 stride 				|
+| Flatten	      	| 		|
+| Fully connected #1		| Outputs 200x1        									|
 | Sigmoid					|												|
-| Fully connected #2	| outputs 43x1        									|
-| Softmax	w/ Cross Entropy w/Logits			|         									|
-| Loss Operation			|  Reduce Mean       									|
+| Fully connected #2	| Outputs 100x1        									|
+| Linear					|												|
+| Fully connected #3	| Outputs 50x1        									|
+| Linear					|												|
+| Fully connected #4	| Outputs 1x1        									|
+| Linear					|												|
+| Loss Operation			|  Mean Squared Error       									|
 | Optimizer			| Adam Optimizer       									|
-| Training Operation			|  Minimize       									|
+
 
 
 3. Creation of the Training Set & Training Process
