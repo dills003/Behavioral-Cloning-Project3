@@ -14,13 +14,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./examples/center1.jpg "Center"
+[image2]: ./examples/left1.jpg "Left"
+[image3]: ./examples/right1.jpg "Right"
+[image4]: ./examples/trouble.jpg "Trouble"
+
+
 
 **Rubric Points**
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -50,7 +49,7 @@ Model Architecture and Training Strategy
 
 1. An appropriate model architecture has been employed
 
-My model consists of a two convolution neural networks with 5x5 filter sizes and depths between 12 and 36 (model.py code lines 80 & 82). I also used two max pooling layers and four dense layers(model.py code lines 80 & 82 
+My model consists of a two convolution neural networks with 5x5 filter sizes and depths between 12 and 36 (model.py code lines 80 & 82). I also used two max pooling layers and four dense layers(model.py code lines 80 & 82 ).
 
 The model includes RELU (model.py code lines 80 & 82) and a sigmoid (model.py code line 85)  to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (model.py code line 81-88). 
 
@@ -122,13 +121,13 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 With the center lane driving, the video also records impages from left and right cameras. I used these to fake a recovery, rather then driving off the road. Below are the three cameras all at the same time:
 
+![alt text][image1]
 ![alt text][image2]
 ![alt text][image3]
-![alt text][image4]
 
 Then I repeated this process on my trouble areas in order to get more data points. Here is an image of my trouble area:
 
-![alt text][image5]
+![alt text][image4]
 
 To augment the data sat, I also flipped images and angles and added a steering factor, thinking that this would help my model train better.
 
