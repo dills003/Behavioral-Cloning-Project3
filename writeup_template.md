@@ -56,7 +56,7 @@ The model includes RELU (model.py code lines 80 & 82) and a sigmoid (model.py co
 
 2. Attempts to reduce overfitting in the model
 
-To reduce overfitting, I tried to use the smallest network with less convulution filters as possible to achieve good autonomous driving. I orignally tried to use a large Nvidia/googlent type architecture, but realized it wasn't necessary.I also used augmented my data by using all three cameras and by flipping every imagage. More data is a great way to help with overfitting I believe.  
+To reduce overfitting, I tried to use the smallest network with less convulution filters as possible to achieve good autonomous driving. I orignally tried to use a large Nvidia/googlent type architecture, but realized it wasn't necessary. I also used augmented my data by using all three cameras and by flipping every imagage. More data is a great way to help with overfitting I believe.  
 
 Also, the model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track. I reserved 20% of my collected data to validate with.
 
@@ -74,7 +74,7 @@ Model Architecture and Training Strategy
 
 1. Solution Design Approach
 
-My first solution to the solution went horribly wrong. I proabably spent four sleepless night trying to figure out where I went wrong. I decided to implement a Nvidia/googlenet type strategy with tons of data. At one point I had 400,000 data points. I drove on both tracks forward and reverse several times. I had layers and layers of convolutions and dropouts. I kept messing with filter depths and sizes, to the point I was driving myself mad. I then decided to take a step back and use a more traditionsl LeNet structure, it worked for me before, so I figured that I would give it a shot. After one hour, I was driving perfectly.
+My first solution to the solution went horribly wrong. I proabably spent four sleepless night trying to figure out where I went wrong. I decided to implement a Nvidia/googlenet type strategy with tons of data. At one point I had 400,000 data points. I drove on both tracks forward and reverse several times. I had layers and layers of convolutions and dropouts. I kept messing with filter depths and sizes, to the point I was driving myself mad. I then decided to take a step back and use a more traditionsl LeNet structure, it worked for me before, so I figured that I would give it a shot. After one hour, I was driving perfectly. The good thing that came out of this, is that I was forced to use a data genertor, so that was fun to learn how to use.
 
 My first step after my first failed attempt, was to use a convolution neural network model similar to the one I built in project two (basic LeNet). I thought this model might be appropriate because it was simple and had fewer knobs for me to mess with.
 
@@ -120,7 +120,7 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-With the center lane driving, the video also records impages from left and right cameras. I used these to fake a recovery, rather then driving off the road.
+With the center lane driving, the video also records impages from left and right cameras. I used these to fake a recovery, rather then driving off the road. Below are the three cameras all at the same time:
 
 ![alt text][image3]
 ![alt text][image4]
@@ -128,6 +128,7 @@ With the center lane driving, the video also records impages from left and right
 
 Then I repeated this process on my trouble areas in order to get more data points. Here is an image of my trouble area:
 
+![alt text][image1]
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
@@ -135,11 +136,25 @@ To augment the data sat, I also flipped images and angles thinking that this wou
 ![alt text][image7]
 
 
-After the collection process, I had  number of data points. I then preprocessed this data by cropping and normalizing it.
+After the collection process, I had  number of 3,738 data points from the center camera. After using the other cameras I had 11,214 total images. Finally, after flipping the data, I had 22,428 images. I then preprocessed this data by cropping and normalizing it.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by asdfadsfasdf I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 7 as evidenced by athe validation loss bouncing back up. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+| Epoch    		| Training Loss        		| Validation Loss					| 
+|:---------------------:|:---------------------:|:---------------------------------------------:| 
+| #1         		| 0.4294						| 0.1915 							| 
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+| #1         		| 0.4294						| 0.1915 							|  
+
 
 **Takeaways**
 The biggest thing that I learned from this project is that the model and data must have a happy marriage to work well. You can have the greatest model in the world, but train it with terrible data and the results will be bad. The same goes for great data and a terrible model. This project made me think of something I always heard in construction, "Jack of all trades, but master of none." This is what I was trying to do with my first attempt, I was trying to make the car drive great at both tracks, but was only getting average results. But when I focused solely on the test track, good results were easy to realize. I hope autonomous cars of the future can great everywher e and not just average everywhere.
