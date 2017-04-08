@@ -78,25 +78,38 @@ My first solution to the solution went horribly wrong. I proabably spent four sl
 
 My first step was to use a convolution neural network model similar to the one I built in project two. I thought this model might be appropriate because it was simple and has fewer knobs for me to tweak.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training and on the validation set. This implied that I was on the right track 
 
-To combat the overfitting, I modified the model so that the images were normalized.
+To combat the overfitting, I modified the model so that the images were normalized and included more data.
 
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The final step was to run the simulator to see how well the car was driving around track one. There were a one spot on the track where the vehicle gave me trouble. To improve the driving behavior in these cases, I recorded more data points only at those spots while driving very slowly (to gain even more data)
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py code lines 77-90) consisted of a convolution neural network with the following layers and layer sizes ...
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 32x32x1 grayscaled image   							| 
+| Convolution #1     	| 1x1 stride, outputs 28x28x6 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
+| Convolution #2	    | 1x1 stride, outputs 10x10x16      									|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
+| Flatten	      	| outputs 400x1 				|
+| Fully connected #1		| outputs 200x1        									|
+| Sigmoid					|												|
+| Fully connected #2	| outputs 43x1        									|
+| Softmax	w/ Cross Entropy w/Logits			|         									|
+| Loss Operation			|  Reduce Mean       									|
+| Optimizer			| Adam Optimizer       									|
+| Training Operation			|  Minimize       									|
 
-![alt text][image1]
 
-####3. Creation of the Training Set & Training Process
+3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
@@ -117,9 +130,9 @@ To augment the data sat, I also flipped images and angles thinking that this wou
 
 Etc ....
 
-After the collection process, I had  number of data points. I then preprocessed this data by ...
+After the collection process, I had  number of data points. I then preprocessed this data by cropping and normalizing it.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by asdfadsfasdf I used an adam optimizer so that manually training the learning rate wasn't necessary.
