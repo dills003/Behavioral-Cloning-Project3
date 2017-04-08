@@ -118,22 +118,19 @@ The final model architecture (model.py code lines 77-90) consisted of a convolut
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
+![alt text][image1]
 
 With the center lane driving, the video also records impages from left and right cameras. I used these to fake a recovery, rather then driving off the road. Below are the three cameras all at the same time:
 
+![alt text][image2]
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
 Then I repeated this process on my trouble areas in order to get more data points. Here is an image of my trouble area:
 
-![alt text][image1]
+![alt text][image5]
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
+To augment the data sat, I also flipped images and angles and added a steering factor, thinking that this would help my model train better.
 
 
 After the collection process, I had  number of 3,738 data points from the center camera. After using the other cameras I had 11,214 total images. Finally, after flipping the data, I had 22,428 images. I then preprocessed this data by cropping and normalizing it.
