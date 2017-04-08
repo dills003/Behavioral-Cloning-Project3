@@ -76,7 +76,7 @@ Model Architecture and Training Strategy
 
 My first solution to the solution went horribly wrong. I proabably spent four sleepless night trying to figure out where I went wrong. I decided to implement a Nvidia/googlenet type strategy with tons of data. At one point I had 400,000 data points. I drove on both tracks forward and reverse several times. I had layers and layers of convolutions and dropouts. I kept messing with filter depths and sizes, to the point I was driving myself mad. I then decided to take a step back and use a more traditionsl LeNet structure, it worked for me before, so I figured that I would give it a shot. After one hour, I was driving perfectly.
 
-My first step was to use a convolution neural network model similar to the one I built in project two. I thought this model might be appropriate because it was simple and has fewer knobs for me to tweak.
+My first step after my first failed attempt, was to use a convolution neural network model similar to the one I built in project two (basic LeNet). I thought this model might be appropriate because it was simple and had fewer knobs for me to mess with.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training and on the validation set. This implied that I was on the right track 
 
@@ -88,7 +88,7 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 2. Final Model Architecture
 
-The final model architecture (model.py code lines 77-90) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py code lines 77-90) consisted of a convolution neural network with the following layers and layer sizes:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -115,24 +115,26 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+With the center lane driving, the video also records impages from left and right cameras. I used these to fake a recovery, rather then driving off the road.
 
 ![alt text][image3]
 ![alt text][image4]
 ![alt text][image5]
 
-Then I repeated this process on track two in order to get more data points.
+Then I repeated this process on my trouble areas in order to get more data points. Here is an image of my trouble area:
+
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
 ![alt text][image6]
 ![alt text][image7]
 
-Etc ....
 
 After the collection process, I had  number of data points. I then preprocessed this data by cropping and normalizing it.
-
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by asdfadsfasdf I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+**Takeaways**
+The biggest thing that I learned from this project is that the model and data must have a happy marriage to work well. You can have the greatest model in the world, but train it with terrible data and the results will be bad. The same goes for great data and a terrible model. This project made me think of something I always heard in construction, "Jack of all trades, but master of none." This is what I was trying to do with my first attempt, I was trying to make the car drive great at both tracks, but was only getting average results. But when I focused solely on the test track, good results were easy to realize. I hope autonomous cars of the future can great everywher e and not just average everywhere.
